@@ -6,7 +6,7 @@
 
 ## 🚀 Overview
 
-This starter template demonstrates how to build modern web applications with **Next.js 16** and **Netlify** with zero configuration. It includes real-world examples of:
+This starter template demonstrates how to build modern web applications with **Next.js 16** and **Netlify** with minimal configuration. It includes real-world examples of:
 
 - 🎨 **Next.js 16** (App Router) with **React 19** and **React Compiler**
 - ⚡ **Turbopack** for blazing-fast development builds
