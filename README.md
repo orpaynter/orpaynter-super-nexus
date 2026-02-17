@@ -38,6 +38,10 @@ netlify dev
 
 If your browser doesn't navigate to the site automatically, visit [localhost:8888](http://localhost:8888).
 
+## Repository Protection
+
+This repository includes scripts to set up enterprise-grade branch protection for the `main` branch using GitHub repository rulesets. See [`scripts/README.md`](scripts/README.md) for detailed instructions on how to apply the ruleset.
+
 ## Resources
 
 - Check out the [Next.js on Netlify docs](https://docs.netlify.com/frameworks/next-js/overview/)
