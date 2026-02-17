@@ -22,6 +22,10 @@ if ! gh auth status &> /dev/null; then
 fi
 
 # Create the ruleset
+# Note: Rules work together in GitHub rulesets:
+# - The 'update' rule blocks direct pushes
+# - The 'pull_request' rule creates an exception allowing PR-based updates
+# - The 'creation' rule prevents creating new branches matching the pattern
 if gh api repos/$REPO/rulesets --method POST --input - <<'EOF'
 {
   "name": "main-branch-protection",
