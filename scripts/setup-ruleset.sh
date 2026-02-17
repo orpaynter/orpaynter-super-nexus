@@ -46,7 +46,7 @@ echo ""
 
 # Display the ruleset configuration
 echo "📝 Ruleset configuration:"
-cat "$CONFIG_FILE" | jq '.'
+jq '.' "$CONFIG_FILE"
 echo ""
 
 # Confirm before proceeding
@@ -59,14 +59,12 @@ fi
 
 # Create the ruleset using GitHub API
 echo "🚀 Creating ruleset..."
-RESPONSE=$(gh api \
+if RESPONSE=$(gh api \
     --method POST \
     -H "Accept: application/vnd.github+json" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     "/repos/$REPO_OWNER/$REPO_NAME/rulesets" \
-    --input "$CONFIG_FILE" 2>&1)
-
-if [ $? -eq 0 ]; then
+    --input "$CONFIG_FILE" 2>&1); then
     echo "✅ Ruleset created successfully!"
     echo ""
     echo "Ruleset details:"

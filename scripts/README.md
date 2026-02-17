@@ -17,6 +17,8 @@ The ruleset provides the following protection rules:
    - Required review thread resolution
 7. **Block force pushes** (`non_fast_forward`) — Prevents history rewriting
 
+**Important Note:** With an empty `bypass_actors` list and the `creation`, `update`, and `deletion` restrictions enabled, all changes to the main branch must go through pull requests. Direct pushes are prevented, ensuring all code changes are reviewed before merging. This configuration provides enterprise-grade protection by enforcing a strict pull request workflow.
+
 ## Files
 
 - **`ruleset-config.json`** - JSON configuration for the GitHub ruleset
