@@ -10,7 +10,19 @@ REPO="orpaynter/orpaynter-super-nexus"
 
 echo "Creating branch protection ruleset for $REPO..."
 
-gh api repos/$REPO/rulesets --method POST --input - <<'EOF'
+# Check if gh CLI is installed and authenticated
+if ! command -v gh &> /dev/null; then
+    echo "Error: GitHub CLI (gh) is not installed. Please install it from https://cli.github.com/"
+    exit 1
+fi
+
+if ! gh auth status &> /dev/null; then
+    echo "Error: GitHub CLI is not authenticated. Please run 'gh auth login'"
+    exit 1
+fi
+
+# Create the ruleset
+if gh api repos/$REPO/rulesets --method POST --input - <<'EOF'
 {
   "name": "main-branch-protection",
   "target": "branch",
@@ -42,5 +54,12 @@ gh api repos/$REPO/rulesets --method POST --input - <<'EOF'
   ]
 }
 EOF
-
-echo "✓ Branch protection ruleset created successfully!"
+then
+    echo "✓ Branch protection ruleset created successfully!"
+else
+    echo "Error: Failed to create ruleset. This may happen if:"
+    echo "  - The ruleset already exists (try deleting it first)"
+    echo "  - You don't have admin permissions on the repository"
+    echo "  - The repository name is incorrect"
+    exit 1
+fi
